@@ -1,0 +1,44 @@
+version: "2"
+run:
+  relative-path-mode: gitroot
+  modules-download-mode: readonly
+output:
+  path-mode: "abs"
+severity:
+  default: error
+formatters:
+  enable:
+    - goimports
+linters:
+  default: none
+  enable:
+    - govet
+    - errcheck
+    - wrapcheck
+    - unused
+    - nakedret
+    - mnd
+    - interfacebloat
+    - exhaustive
+    - exhaustruct
+    - errchkjson
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - canonicalheader
+    - containedctx
+    - contextcheck
+    - copyloopvar
+    - testableexamples
+    - testifylint
+    - testpackage
+    - thelper
+    - tparallel
+    - paralleltest
+  settings:
+    wrapcheck:
+      ignore-package-globs:
+        - context
+    testifylint:
+      disable:
+        - require-error

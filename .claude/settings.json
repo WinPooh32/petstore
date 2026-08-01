@@ -1,0 +1,103 @@
+{
+    "permissions": {
+        "deny": [
+            "Read(./.env)",
+            "Read(./.env.*)",
+            "Read(*.pem)",
+            "Read(*.key)",
+            "Read(~/.ssh/**)",
+            "Read(*gen.go)",
+            "Edit(*gen.go)"
+        ]
+    },
+    "enabledPlugins": {
+        "gopls-lsp@claude-plugins-official": true
+    },
+    "hooks": {
+        "PreToolUse": [
+            {
+                "matcher": "",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": ".claude/hooks/circuit-breaker.sh"
+                    }
+                ]
+            }
+        ],
+        "SessionEnd": [
+            {
+                "matcher": "",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": ".claude/hooks/circuit-breaker.sh"
+                    }
+                ]
+            }
+        ],
+        "PostToolUse": [
+            {
+                "matcher": "Edit|Write",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "file_path=$(jq -r '.tool_input.file_path'); gofmt -w \"$file_path\"",
+                        "if": "Edit(*.go)|Write(*.go)",
+                        "timeout": 60,
+                        "statusMessage": "Run gofmt..."
+                    },
+                    {
+                        "type": "command",
+                        "command": "file_path=$(jq -r '.tool_input.file_path'); dir=$(dirname \"$file_path\"); go vet \"$dir\"",
+                        "if": "Edit(*.go)|Write(*.go)",
+                        "timeout": 60,
+                        "statusMessage": "Run go vet..."
+                    },
+                    {
+                        "type": "command",
+                        "command": "file_path=$(jq -r '.tool_input.file_path'); dir=$(dirname \"$file_path\"); LOG_LEVEL=error golangci-lint-v2 run \"$dir\" -c .golangci.yml --fix --timeout=5m --issues-exit-code=0 2>&1",
+                        "if": "Edit(*.go)|Write(*.go)",
+                        "timeout": 360,
+                        "statusMessage": "Run linter..."
+                    }
+                ]
+            },
+            {
+                "matcher": "Skill",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "echo \"<system-reminder>Load the next skill!</system-reminder>\""
+                    }
+                ]
+            }
+        ],
+        "SessionStart": [
+            {
+                "matcher": "",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "echo \"<system-reminder>1. Always run only one sub-agent at a time.\n2. Read fewer than 3 files at a time.</system-reminder>\""
+                    },
+                    {
+                        "type": "command",
+                        "command": "echo \"<system-reminder>Your project knowledge is saved in .claude/skills/research/index.md</system-reminder>\""
+                    }
+                ]
+            }
+        ],
+        "UserPromptSubmit": [
+            {
+                "matcher": "",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "echo \"<system-reminder>Your project knowledge is saved in .claude/skills/research/index.md</system-reminder>\""
+                    }
+                ]
+            }
+        ]
+    }
+}
