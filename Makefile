@@ -13,7 +13,7 @@ lint/go:
 
 lint/typos:
 	@echo "Run typos linter"
-	@typos
+	@misc/bin/typos
 
 lint/md:
 	@echo "Run markdown linter"
@@ -44,3 +44,5 @@ install/tools:
 		echo "Processing $$mod..."; \
 		go mod download -modfile="$$mod"; \
 	done
+	@echo "Installing typos..."
+	@bash misc/scripts/install-typos.sh
