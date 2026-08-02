@@ -1,4 +1,4 @@
-.PHONY: help lint lint/go lint/typos lint/md fmt fmt/go
+.PHONY: help lint lint/go lint/typos lint/md fmt fmt/go fmt/golangci-lint fmt/md
 
 ## Show available targets
 help:
@@ -20,11 +20,15 @@ lint/md:
 	@go tool -modfile=misc/mdsmith-go.mod mdsmith check
 
 ## Format Go source files
-fmt: fmt/go
+fmt: fmt/go fmt/golangci-lint fmt/md
 
 fmt/go:
 	@echo "Format Go source files"
 	@go fmt ./...
+
+fmt/golangci-lint:
+	@echo "Auto-fix lint issues"
+	@go tool -modfile=misc/golangci-lint-go.mod golangci-lint run ./... -c .golangci.yml --fix --timeout=5m --issues-exit-code=0
 
 fmt/md:
 	@echo "Format Markdown files"

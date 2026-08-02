@@ -42,24 +42,16 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "file_path=$(jq -r '.tool_input.file_path'); gofmt -w \"$file_path\"",
-                        "if": "Edit(*.go)|Write(*.go)",
+                        "command": "make fmt",
+                        "if": "Edit(*.go)|Write(*.go)|Edit(*.md)|Write(*.md)",
                         "timeout": 60,
-                        "statusMessage": "Run gofmt..."
+                        "statusMessage": "Running make fmt..."
                     },
                     {
                         "type": "command",
-                        "command": "file_path=$(jq -r '.tool_input.file_path'); dir=$(dirname \"$file_path\"); go vet \"$dir\"",
-                        "if": "Edit(*.go)|Write(*.go)",
-                        "timeout": 60,
-                        "statusMessage": "Run go vet..."
-                    },
-                    {
-                        "type": "command",
-                        "command": "file_path=$(jq -r '.tool_input.file_path'); dir=$(dirname \"$file_path\"); LOG_LEVEL=error golangci-lint-v2 run \"$dir\" -c .golangci.yml --fix --timeout=5m --issues-exit-code=0 2>&1",
-                        "if": "Edit(*.go)|Write(*.go)",
-                        "timeout": 360,
-                        "statusMessage": "Run linter..."
+                        "command": "make lint/typos",
+                        "timeout": 30,
+                        "statusMessage": "Checking typos..."
                     }
                 ]
             },
