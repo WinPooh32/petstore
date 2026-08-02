@@ -13,11 +13,11 @@ maxTurns: 200
 skills:
   - research
 mcpServers:
-  - gopls: 
+  - gopls:
       type: stdio
-      command: gopls
-      args: 
-        - mcp
+      command: make
+      args:
+        - run/mcp-gopls
 hooks:
   PostToolUse:
     - matcher: ""

@@ -1,4 +1,4 @@
-.PHONY: help lint lint/go lint/typos lint/md fmt fmt/go fmt/golangci-lint fmt/md
+.PHONY: help lint lint/go lint/typos lint/md fmt fmt/go fmt/golangci-lint fmt/md run/mcp-gopls install/tools
 
 ## Show available targets
 help:
@@ -19,7 +19,7 @@ lint/md:
 	@echo "Run markdown linter"
 	@go tool -modfile=misc/mdsmith-go.mod mdsmith check
 
-## Format Go source files
+## Format all source files
 fmt: fmt/go fmt/golangci-lint fmt/md
 
 fmt/go:
@@ -33,3 +33,14 @@ fmt/golangci-lint:
 fmt/md:
 	@echo "Format Markdown files"
 	@go tool -modfile=misc/mdsmith-go.mod mdsmith fix || true
+
+run/mcp-gopls:
+	@echo "Run gopls MCP server"
+	@go tool -modfile=misc/gopls-go.mod gopls mcp
+
+install/tools:
+	@echo "Downloading misc tool dependencies..."
+	@for mod in misc/*-go.mod; do \
+		echo "Processing $$mod..."; \
+		go mod download -modfile="$$mod"; \
+	done
