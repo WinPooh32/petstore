@@ -8,14 +8,14 @@ Follow these steps to update an existing tool in `misc/`.
 
 ## Tool List
 
-| Tool Modfile | Binary | Purpose |
-| --- | --- | --- |
-| `go-arch-lint-go.mod` | `go-arch-lint` | Architecture constraints |
-| `gofumpt-go.mod` | `gofumpt` | Go formatting |
-| `golangci-lint-go.mod` | `golangci-lint` | Go static analysis |
-| `gopls-go.mod` | `gopls` | Go language server / MCP |
-| `mdsmith-go.mod` | `mdsmith` | Markdown linting |
-| `searxng-mcp-go.mod` | `searxng-mcp` | SearXNG MCP server |
+| Tool Modfile           | Binary          | Purpose                                  |
+| ---------------------- | --------------- | ---------------------------------------- |
+| `go-arch-lint-go.mod`  | `go-arch-lint`  | Architecture constraints                 |
+| `gofumpt-go.mod`       | `gofumpt`       | Go formatting                            |
+| `golangci-lint-go.mod` | `golangci-lint` | Go static analysis (90+ enabled linters) |
+| `gopls-go.mod`         | `gopls`         | Go language server / MCP                 |
+| `mdsmith-go.mod`       | `mdsmith`       | Markdown linting                         |
+| `searxng-mcp-go.mod`   | `searxng-mcp`   | SearXNG MCP server                       |
 
 ## Update a Specific Tool
 
@@ -53,6 +53,6 @@ done
 
 1. Run `make install/tools` to confirm all dependencies download.
 2. Run the relevant `make` target to confirm the tool works:
-   - `make lint` for linters
-   - `make fmt` for formatters
-   - `make run/mcp-<tool>` for MCP servers
+  - `make lint` for linters
+  - `make fmt` for formatters
+  - `make run/mcp-<tool>` for MCP servers
