@@ -24,7 +24,7 @@ fmt: fmt/go fmt/golangci-lint fmt/md
 
 fmt/go:
 	@echo "Format Go source files"
-	@go fmt ./...
+	@go tool -modfile=misc/gofumpt-go.mod gofumpt -l -w .
 
 fmt/golangci-lint:
 	@echo "Auto-fix lint issues"
