@@ -105,3 +105,10 @@ linters:
     testifylint:
       disable:
         - require-error
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
