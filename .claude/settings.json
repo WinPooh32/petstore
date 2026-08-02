@@ -26,6 +26,15 @@
                         "command": ".claude/hooks/circuit-breaker.sh"
                     }
                 ]
+            },
+            {
+                "matcher": "Bash",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": ".claude/hooks/block-download-pipes.sh"
+                    }
+                ]
             }
         ],
         "SessionEnd": [
@@ -64,6 +73,24 @@
                     {
                         "type": "command",
                         "command": "echo \"<system-reminder>Load the next skill!</system-reminder>\""
+                    }
+                ]
+            },
+            {
+                "matcher": "mcp__searxng__query",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": ".claude/hooks/warn-mcp-query.sh"
+                    }
+                ]
+            },
+            {
+                "matcher": "Bash",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": ".claude/hooks/warn-web-request.sh"
                     }
                 ]
             }
