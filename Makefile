@@ -1,4 +1,6 @@
-.PHONY: help lint lint/go lint/typos lint/md lint/arch fmt fmt/go fmt/golangci-lint fmt/md run/mcp-gopls install/tools
+-include .env
+
+.PHONY: help lint lint/go lint/typos lint/md lint/arch fmt fmt/go fmt/golangci-lint fmt/md run/mcp-gopls run/mcp-searxng install/tools
 
 ## Show available targets
 help:
@@ -38,9 +40,14 @@ fmt/md:
 	@echo "Format Markdown files"
 	@go tool -modfile=misc/mdsmith-go.mod mdsmith fix || true
 
+## Run MCP servers
 run/mcp-gopls:
 	@echo "Run gopls MCP server"
 	@go tool -modfile=misc/gopls-go.mod gopls mcp
+
+run/mcp-searxng:
+	@echo "Run SearXNG MCP server"
+	@go tool -modfile=misc/searxng-mcp-go.mod searxng-mcp $(SEARXNG_ARGS)
 
 install/tools:
 	@echo "Downloading misc tool dependencies..."

@@ -11,6 +11,7 @@ scaffold and build software from scratch.
 
 - Go 1.26+
 - curl, jq (for tool installation)
+- [SearXNG](https://docs.searxng.org/admin/installation.html) — self-hosted search engine (required for `run/mcp-searxng`)
 
 ### Initialize
 
