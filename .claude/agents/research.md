@@ -9,6 +9,7 @@ tools:
   - Read
   - Write
   - Edit
+  - mcp__searxng__query
 maxTurns: 200
 skills:
   - research
@@ -38,7 +39,6 @@ Your strengths include:
 
 Recommendations:
 
-- Use gopls for Go code analysis. Entry point: services/**/cmd/main.go
 - Use Read when you know the exact path to the file you need to read
 - Use Bash ONLY for read-only operations (`ls`, `git status`, `git log`, `git diff`, `grep`, `cat`, `head`, `tail`)
 - NEVER use Bash for: `touch`, `rm`, `cp`, `mv`, `git add`, `git commit`, `npm install`, `pip install`
