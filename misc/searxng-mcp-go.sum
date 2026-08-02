@@ -1,5 +1,7 @@
 github.com/WinPooh32/searxng-mcp v0.0.2 h1:BT12wHEk/IxspaFHkipqZzSbjc0CNbWN1VeEQcLMAZo=
 github.com/WinPooh32/searxng-mcp v0.0.2/go.mod h1:+x0rI5fpktf8ntXqkMxTyVAVVL0idBEMc5TML3fDtpo=
+github.com/WinPooh32/searxng-mcp v0.0.3 h1:doJ9dut/gP82Po0o4HOrK5QEHbEx/ojx73MiSaWMS9U=
+github.com/WinPooh32/searxng-mcp v0.0.3/go.mod h1:+x0rI5fpktf8ntXqkMxTyVAVVL0idBEMc5TML3fDtpo=
 github.com/google/jsonschema-go v0.4.2 h1:tmrUohrwoLZZS/P3x7ex0WAVknEkBZM46iALbcqoRA8=
 github.com/google/jsonschema-go v0.4.2/go.mod h1:r5quNTdLOYEz95Ru18zA0ydNbBuYoo9tgaYcxEYhJVE=
 github.com/modelcontextprotocol/go-sdk v1.4.0 h1:u0kr8lbJc1oBcawK7Df+/ajNMpIDFE41OEPxdeTLOn8=
