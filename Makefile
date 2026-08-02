@@ -9,7 +9,7 @@ lint: lint/go lint/typos lint/gomarklint
 
 lint/go:
 	@echo "Run go linter"
-	@golangci-lint run ./... -c .golangci.yml
+	@go tool -modfile=misc/golangci-lint-go.mod golangci-lint run ./... -c .golangci.yml
 
 lint/typos:
 	@echo "Run typos linter"
@@ -17,4 +17,4 @@ lint/typos:
 
 lint/gomarklint:
 	@echo "Run markdown linter"
-	@gomarklint
+	@go tool -modfile=misc/gomarklint-go.mod gomarklint

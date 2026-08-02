@@ -2,20 +2,17 @@
     "include": [
         "README.md"
     ],
+    "ignore": [
+        "node_modules",
+        "vendor"
+    ],
     "default": true,
     "rules": {
         "heading-level": {
             "enabled": true,
             "severity": "error",
             "minLevel": 1
-        },
-        "duplicate-heading": true,
-        "no-multiple-blank-lines": true,
-        "no-setext-headings": true,
-        "final-blank-line": true,
-        "unclosed-code-block": true,
-        "empty-alt-text": true,
-        "external-link": true
+        }
     },
     "output": "text"
 }
