@@ -10,7 +10,8 @@
             "Read(*.key)",
             "Read(~/.ssh/**)",
             "Read(*gen.go)",
-            "Edit(*gen.go)"
+            "Edit(*gen.go)",
+            "Edit(.golangci.yml)"
         ]
     },
     "enabledPlugins": {
@@ -33,6 +34,16 @@
                     {
                         "type": "command",
                         "command": ".claude/hooks/block-download-pipes.sh"
+                    }
+                ]
+            },
+            {
+                "matcher": "Write|Edit|Bash",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": ".claude/hooks/block-nolint.sh",
+                        "statusMessage": "Checking for //nolint..."
                     }
                 ]
             }

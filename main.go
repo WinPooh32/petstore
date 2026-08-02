@@ -1,7 +1,8 @@
+// Package main provides the entry point for the petstore application.
 package main
 
-import "fmt"
+import "log"
 
 func main() {
-	fmt.Println("hello")
+	log.Println("hello")
 }
