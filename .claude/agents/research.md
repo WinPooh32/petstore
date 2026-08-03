@@ -1,6 +1,6 @@
 ---
 name: research
-description: Use for deep codebase researching
+description: Use for deep codebase researching, answering "how to" questings
 color: red
 background: false
 tools: 
@@ -13,6 +13,7 @@ tools:
 maxTurns: 200
 skills:
   - research
+  - searching-query
 mcpServers:
   - gopls:
       type: stdio
