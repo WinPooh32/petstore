@@ -41,8 +41,8 @@ Pattern `^(fmt\.Print(|f|ln)|print|println)$` blocks `fmt.Print*`, `print`, and 
 // Before (forbidden)
 fmt.Println("hello")
 
-// After — use log or slog
-log.Println("hello")
+// After — use slog
+slog.Println("hello")
 ```
 
 ### `revive` — Style rules
@@ -95,6 +95,9 @@ config := Config{Host: "localhost"}
 
 // After
 config := Config{Host: "localhost", Port: 0, Timeout: 0}
+
+// Or better alternative
+config := NewConfigShort("localhost")
 ```
 
 ### `gochecknoglobals` — Global variables
@@ -131,7 +134,7 @@ w.Write(data)
 // After
 _, err := w.Write(data)
 if err != nil {
-    return err
+    return fmt.Errorf("write data: %w", err)
 }
 ```
 
@@ -187,10 +190,12 @@ Close response bodies.
 
 ```go
 // Before
-resp, _ := http.Get(url)
+resp, err := http.Get(url)
+...
 
 // After
-resp, _ := http.Get(url)
+resp, err := http.Get(url)
+...
 defer resp.Body.Close()
 ```
 
