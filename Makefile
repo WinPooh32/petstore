@@ -1,6 +1,6 @@
 -include .env
 
-.PHONY: help lint lint/go lint/typos lint/md lint/arch fmt fmt/go fmt/golangci-lint fmt/md run/mcp-gopls run/mcp-searxng install/tools
+.PHONY: help lint lint/go lint/typos lint/md lint/arch fmt fmt/go fmt/golangci-lint fmt/md run/mcp-gopls run/mcp-searxng install/tools run/get-page run/get-markdown
 
 ## Show available targets
 help:
@@ -57,3 +57,11 @@ install/tools:
 	done
 	@echo "Installing typos..."
 	@bash misc/scripts/install-typos.sh
+
+## Utils
+
+run/get-page:
+	@curl -sL --retry 3 --retry-max-time 5 --max-redirs 5 --compressed --location $(location) | go tool -modfile=misc/html2markdown-go.mod html2markdown
+
+run/get-markdown:
+	@curl -sL --retry 3 --retry-max-time 5 --max-redirs 5 --compressed --location $(location)
