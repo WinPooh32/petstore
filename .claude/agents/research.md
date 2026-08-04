@@ -10,6 +10,7 @@ tools:
   - Write
   - Edit
   - mcp__searxng__query
+  - mcp__browser__markdown
 maxTurns: 200
 skills:
   - research

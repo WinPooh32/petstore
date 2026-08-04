@@ -48,16 +48,4 @@ site:github.com chromedp/chromedp query text
 
 ## Get url page content
 
-Request only one page per tool call!
-
-Get html page converted to markdown:
-
-```bash
-make run/get-page location="https://example.com/foo"
-```
-
-Get raw markdown file directly:
-
-```bash
-make run/get-markdown location="https://example.com/bar.md"
-```
+You MUST use mcp__browser__markdown for fetching web pages content in markdown format. DO NOT set maxBytes

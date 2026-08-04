@@ -1,6 +1,6 @@
 -include .env
 
-.PHONY: help lint lint/go lint/typos lint/md lint/arch fmt fmt/go fmt/golangci-lint fmt/md run/mcp-gopls run/mcp-searxng install/tools run/get-page run/get-markdown
+.PHONY: help lint lint/go lint/typos lint/md lint/arch fmt fmt/go fmt/golangci-lint fmt/md run/mcp-gopls run/mcp-searxng run/mcp-lightpanda run/lightpanda/fetch run/lightpanda/serve install/tools
 
 ## Show available targets
 help:
@@ -49,6 +49,10 @@ run/mcp-searxng:
 	@echo "Run SearXNG MCP server"
 	@go tool -modfile=misc/searxng-mcp-go.mod searxng-mcp $(SEARXNG_ARGS)
 
+run/mcp-lightpanda:
+	@echo "Run lightpanda MCP server"
+	@misc/bin/lightpanda mcp --disable-subframes --disable-workers --http-cache-dir /tmp/lightpanda-http-cache --http-max-response-size 33554432 --http-timeout 30000
+
 install/tools:
 	@echo "Downloading misc tool dependencies..."
 	@for mod in misc/*-go.mod; do \
@@ -57,11 +61,5 @@ install/tools:
 	done
 	@echo "Installing typos..."
 	@bash misc/scripts/install-typos.sh
-
-## Utils
-
-run/get-page:
-	@curl -sL --retry 3 --retry-max-time 5 --max-redirs 5 --compressed --location $(location) | go tool -modfile=misc/html2markdown-go.mod html2markdown
-
-run/get-markdown:
-	@curl -sL --retry 3 --retry-max-time 5 --max-redirs 5 --compressed --location $(location)
+	@echo "Installing lightpanda..."
+	@bash misc/scripts/install-lightpanda.sh
