@@ -1,4 +1,4 @@
-module github.com/WinPooh32/petstore
+module github.com/WinPooh32/singularity
 
 go 1.26.2
 

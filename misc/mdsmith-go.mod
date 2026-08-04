@@ -1,4 +1,4 @@
-module github.com/WinPooh32/petstore/misc/cmd/mdsmith
+module github.com/WinPooh32/singularity/misc/cmd/mdsmith
 
 go 1.26.2
 
