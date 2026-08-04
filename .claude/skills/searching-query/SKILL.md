@@ -48,4 +48,4 @@ site:github.com chromedp/chromedp query text
 
 ## Get url page content
 
-You MUST use mcp__browser__markdown for fetching web pages content in markdown format. DO NOT set maxBytes
+You MUST use mcp__browser__markdown for fetching web pages content in markdown format. You MUST omit maxBytes parameter.

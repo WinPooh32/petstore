@@ -66,7 +66,28 @@
                     {
                         "type": "command",
                         "command": "make fmt",
-                        "if": "Edit(*.go)|Write(*.go)|Edit(*.md)|Write(*.md)",
+                        "if": "Edit(*.go)",
+                        "timeout": 60,
+                        "statusMessage": "Running make fmt..."
+                    },
+                    {
+                        "type": "command",
+                        "command": "make fmt",
+                        "if": "Edit(*.md)",
+                        "timeout": 60,
+                        "statusMessage": "Running make fmt..."
+                    },
+                    {
+                        "type": "command",
+                        "command": "make fmt",
+                        "if": "Write(*.go)",
+                        "timeout": 60,
+                        "statusMessage": "Running make fmt..."
+                    },
+                    {
+                        "type": "command",
+                        "command": "make fmt",
+                        "if": "Write(*.md)",
                         "timeout": 60,
                         "statusMessage": "Running make fmt..."
                     },
@@ -89,6 +110,15 @@
             },
             {
                 "matcher": "mcp__searxng__query",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": ".claude/hooks/warn-mcp-query.sh"
+                    }
+                ]
+            },
+            {
+                "matcher": "mcp__browser__.*",
                 "hooks": [
                     {
                         "type": "command",
