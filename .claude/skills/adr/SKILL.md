@@ -16,13 +16,13 @@ date -u '+%Y-%m-%d'
 
 Append a kebab-case slug that summarizes the decision:
 
-```
+```text
 docs/adr/2026-08-04-use-postgres-for-primary-db.md
 ```
 
 **Multiple ADRs on the same day** are fine — descriptive slugs disambiguate:
 
-```
+```text
 docs/adr/2026-08-04-use-postgres-for-primary-db.md
 docs/adr/2026-08-04-adopt-gofumpt-linter.md
 ```
@@ -57,8 +57,10 @@ Include negative consequences — they're valuable, not failures.
 - **Be brief.** ADRs should be a couple of pages max, not architecture treatises.
 - **Record the decision, not the debate.** Capture what was decided and why, not every argument.
 - **Honest consequences.** List trade-offs and downsides alongside upsides.
-- **Never edit accepted ADRs.** If circumstances change, write a new ADR that **supersedes** the old one and set the old status to `superseded`.
-- **Status lifecycle:** `proposed` → `accepted` → (optionally) `superseded` or `deprecated`. Start as `accepted` if the decision is already made.
+- **Never edit accepted ADRs.** If circumstances change, write a new ADR that
+  **supersedes** the old one and set the old status to `superseded`.
+- **Status lifecycle:** `proposed` → `accepted` → (optionally) `superseded` or
+  `deprecated`. Start as `accepted` if the decision is already made.
 
 ## 4. Verify
 
