@@ -1,4 +1,4 @@
-# petstore
+# singularity
 
 A simple AI-driven project built with Go.
 
