@@ -51,7 +51,7 @@ run/mcp-searxng:
 
 run/mcp-lightpanda:
 	@echo "Run lightpanda MCP server"
-	@misc/bin/lightpanda mcp --disable-subframes --disable-workers --http-cache-dir /tmp/lightpanda-http-cache --http-max-response-size 33554432 --http-timeout 30000
+	@misc/bin/lightpanda mcp $(LIGHTPANDA_ARGS)
 
 install/tools:
 	@echo "Downloading misc tool dependencies..."
