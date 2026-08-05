@@ -1,6 +1,6 @@
 -include .env
 
-.PHONY: help lint lint/go lint/typos lint/md lint/arch fmt fmt/go fmt/golangci-lint fmt/md run/mcp-gopls run/mcp-searxng run/mcp-lightpanda run/lightpanda/fetch run/lightpanda/serve install/tools test test/unit test/integration test/mutesting
+.PHONY: help lint lint/go lint/typos lint/md lint/arch fmt fmt/go fmt/golangci-lint fmt/md run/mcp-gopls run/mcp-searxng run/mcp-lightpanda run/lightpanda/fetch run/lightpanda/serve install/tools test test/unit test/all test/mutesting
 
 ## Show available targets
 help:
@@ -65,16 +65,16 @@ install/tools:
 	@bash misc/scripts/install-lightpanda.sh
 
 ## Run all tests
-test: test/unit test/integration test/mutesting
+test: test/unit test/all test/mutesting
 
 test/unit:
 	@echo "Run unit tests"
-	@go test ./...
+	@go tool -modfile=misc/gotestsum-go.mod gotestsum -- -short -timeout=60s ./...
 
-test/integration:
-	@echo "Run integration tests"
-	@go test -tags=integration ./...
+test/all:
+	@echo "Run all tests"
+	@go tool -modfile=misc/gotestsum-go.mod gotestsum -- -timeout=60s ./...
 
 test/mutesting:
 	@echo "Run mutation testing"
-	@go tool -modfile=misc/go-mutesting-go.mod go-mutesting ./...
+	@go tool -modfile=misc/go-mutesting-go.mod go-mutesting --exec=misc/scripts/mutate-test.sh --test-recursive ./...
