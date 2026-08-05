@@ -1,6 +1,6 @@
 -include .env
 
-.PHONY: help lint lint/go lint/typos lint/md lint/arch fmt fmt/go fmt/golangci-lint fmt/md run/mcp-gopls run/mcp-searxng run/mcp-lightpanda run/lightpanda/fetch run/lightpanda/serve install/tools
+.PHONY: help lint lint/go lint/typos lint/md lint/arch fmt fmt/go fmt/golangci-lint fmt/md run/mcp-gopls run/mcp-searxng run/mcp-lightpanda run/lightpanda/fetch run/lightpanda/serve install/tools test test/unit test/integration test/mutesting
 
 ## Show available targets
 help:
@@ -63,3 +63,18 @@ install/tools:
 	@bash misc/scripts/install-typos.sh
 	@echo "Installing lightpanda..."
 	@bash misc/scripts/install-lightpanda.sh
+
+## Run all tests
+test: test/unit test/integration test/mutesting
+
+test/unit:
+	@echo "Run unit tests"
+	@go test ./...
+
+test/integration:
+	@echo "Run integration tests"
+	@go test -tags=integration ./...
+
+test/mutesting:
+	@echo "Run mutation testing"
+	@go tool -modfile=misc/go-mutesting-go.mod go-mutesting ./...
